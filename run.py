@@ -6,4 +6,4 @@ from utils import *
 
 if __name__ == "__main__":
 	#Do shit here
-	runIfconfig()
+	runNMAP()

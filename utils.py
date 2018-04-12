@@ -1,18 +1,18 @@
 import subprocess
+import re
 from subprocess import check_output
 
 #Runs ifconfig and gets ip address so NMAP can be performed
 def runIfconfig():
 	#command = "ifconfig | grep -Eo -m 1 '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1"
-	grepCommand = "grep -Eo -m 1 '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'"
-	headCommand = "head -1"
-	grepCommandArray = grepCommand.split(' ')
-	ifcon = subprocess.Popen(['ifconfig'], stdout=subprocess.PIPE)
-	grep = check_output(grepCommand, stdin=ifcon.stdout)
-	ifcon.wait()
-	print(grep)
-	# grep.wait()
-	# grabHead = check_output(headCommand.split(' '), stdin=grep.stdout)
-	# result = grabHead.decode("utf-8")
-	# print(result)
-	# print("hello")
+	ifcon = check_output(['ifconfig'])
+	ifconResult = ifcon.decode("utf-8");
+	regex = re.compile(r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+	ipaddress = regex.search(ifconResult)
+	return ipaddress.group(0)
+
+def runNMAP():
+	ipaddress = runIfconfig() + "-30";
+	# print(ipaddress)
+	nmapResult = check_output(['nmap', ipaddress])
+	print(nmapResult.decode("utf-8"))
