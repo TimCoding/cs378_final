@@ -8,7 +8,7 @@ def runIfconfig():
 	headCommand = "head -1"
 	grepCommandArray = grepCommand.split(' ')
 	ifcon = subprocess.Popen(['ifconfig'], stdout=subprocess.PIPE)
-	grep = check_output(grepCommandArray, stdin=ifcon.stdout)
+	grep = check_output(grepCommand, stdin=ifcon.stdout)
 	ifcon.wait()
 	print(grep)
 	# grep.wait()
