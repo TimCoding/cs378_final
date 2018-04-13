@@ -6,4 +6,4 @@ from utils import *
 
 if __name__ == "__main__":
 	#Do shit here
-	runNMAP()
+	runPasswordCracker("10:0D:7F:55:FA:AD")
