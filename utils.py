@@ -28,6 +28,8 @@ def runPasswordCracker(target):
 	regex = re.compile(r'\[\s([a-zA-z\d]*)\s\]')
 	passwordCrackerResult = check_output(passwordCrackerCmdArray).decode("utf-8")
 	password = regex.search(passwordCrackerResult)
+	if password is None:
+		return "Not Decryptable"
 	return password.group(1)
 
 def read_bssid():
