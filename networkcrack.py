@@ -2,7 +2,7 @@ import subprocess
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
@@ -13,21 +13,23 @@ class NetworkListButton(ListItemButton):
 
 class NetworkCrack(BoxLayout):
 	network_list = ObjectProperty()
-	network_bssid = []
+	network_bssid = ObjectProperty()
 	word_list_strength = ObjectProperty()
-	cracked_password = ObjectProperty()
+	cracked_password = StringProperty()
 
 	def refresh_networks(self):
+		#self.cracked_password = "Password:"
 		#self.network_list.adapter.data.clear()
 		# subprocesses = subprocess.check_output(["netsh", "wlan", "show", "network"])
 		# subprocesses = subprocesses.decode("ascii")
 		# subprocesses = subprocesses.replace("\r", "")
 		# ls = subprocesses.split("\n")
 		ls = [] 
+		bssid = []
 		networks = read_bssid()
 		for network in networks:
 			ls.append(network[0]) ##Grabbing name
-			network_bssid.append(network[1]) ##Grabbing BSSID 
+			bssid.append(network[1]) ##Grabbing BSSID 
 		self.network_list.adapter.data.extend(ls)
 
 		#self.network_list.adapter.data.remove('')
@@ -56,6 +58,10 @@ class NetworkCrack(BoxLayout):
 			popup = Popup(title='Error', content=Label(text='Please select a network and word list strength.'), size_hint=(None, None), size=(400, 400))
 			popup.open()
 		if self.network_list.adapter.selection:
+			num = parse_num_ssid(self.network_list.adapter.selection[0].text) + 1
+			self.cracked_password = "praetorian"
+			print(num)
+			print(self.network_list.adapter.data[num])
 			selection = self.network_list.adapter.selection[0].text
 		pass
 

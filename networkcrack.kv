@@ -75,12 +75,13 @@ NetworkCrack:
                 size_hint_y: 10
 
                 Label:
+                    id: password
                     font_size: self.width/10
-                    text: "Cracked Password:"
+                    text: "Password:"
 
                 Label:
                     font_size: self.width/10
-                    text: ""
+                    text: root.cracked_password
 
             Button:
                 size_hint_y: 20

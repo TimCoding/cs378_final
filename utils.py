@@ -27,10 +27,10 @@ def runPasswordCracker(target):
 	regex = re.compile(r'\[\s[a-zA-z\d]*\s\]')
 	passwordCrackerResult = check_output(passwordCrackerCmdArray).decode("utf-8")
 	password = regex.search(passwordCrackerResult)
-	print(password.group(0))
+	return password.group(0)
 
 def read_bssid():
-	with open("test.csv", 'r') as fp:
+	with open("cs378-01.csv", 'r') as fp:
 		reader = csv.reader(fp, delimiter=',', quotechar='"')
 		next(reader, None)
 		#data_read = [row for row in reader if len(row) == 15]
@@ -38,11 +38,15 @@ def read_bssid():
 		for row in islice(reader, 1, None):
 			if len(row) == 15:
 				channel = int(row[3])
-				print(channel)
 				if 0 <= channel:
 					if channel not in data_channel: 
 						data_channel[channel] = []
 					#name, bssid, channel
 					if row[13] is not " ":
-						data_channel[channel].append([row[13], row[0], row[3]])
+						data_channel[channel].append([str(len(data_channel[channel]))+ " " + row[13], row[0], row[3]])
 		return data_channel[6]
+
+def parse_num_ssid(name):
+	regex = re.compile(r'([1-9]+)[\s]([a-zA-Z1-9]*)')
+	num = int(regex.search(name).group(1))
+	return num
