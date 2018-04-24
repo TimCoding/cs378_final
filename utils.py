@@ -7,6 +7,8 @@ from itertools import islice
 #Runs ifconfig and gets ip address so NMAP can be performed
 def runIfconfig():
 	#command = "ifconfig | grep -Eo -m 1 '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1"
+	check_output(['ifconfig', '-eth0', 'down'])
+	check_output(['ifconfig', '-eth0', 'up'])
 	ifcon = check_output(['ifconfig'])
 	ifconResult = ifcon.decode("utf-8");
 	#regex = re.compile(r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')

@@ -74,6 +74,7 @@ class NetworkCrack(BoxLayout):
 		if self.cracked_password == "":
 			popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
 			popup.open()
+		runNMAP()
 
 class NetworkCrackApp(App):
 	def build(self):
