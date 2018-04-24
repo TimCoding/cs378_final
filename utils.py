@@ -22,7 +22,7 @@ def runNMAP():
 
 #target takes in a bssid
 def runPasswordCracker(target):
-	passwordCrackerCmd = "aircrack-ng -w /usr/share/john/password.lst -b " + target + " test-02.cap"
+	passwordCrackerCmd = "aircrack-ng -w /usr/share/john/password.lst -b " + target + " cs378-01.cap"
 	passwordCrackerCmdArray = passwordCrackerCmd.split(' ')
 	regex = re.compile(r'\[\s[a-zA-z\d]*\s\]')
 	passwordCrackerResult = check_output(passwordCrackerCmdArray).decode("utf-8")

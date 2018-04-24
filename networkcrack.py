@@ -13,7 +13,7 @@ class NetworkListButton(ListItemButton):
 
 class NetworkCrack(BoxLayout):
 	network_list = ObjectProperty()
-	network_bssid = ObjectProperty()
+	network_bssid = []
 	word_list_strength = ObjectProperty()
 	cracked_password = StringProperty()
 
@@ -31,7 +31,7 @@ class NetworkCrack(BoxLayout):
 			ls.append(network[0]) ##Grabbing name
 			bssid.append(network[1]) ##Grabbing BSSID 
 		self.network_list.adapter.data.extend(ls)
-
+		self.network_bssid = bssid
 		#self.network_list.adapter.data.remove('')
 		self.network_list._trigger_reset_populate()
 
@@ -59,9 +59,9 @@ class NetworkCrack(BoxLayout):
 			popup.open()
 		if self.network_list.adapter.selection:
 			num = parse_num_ssid(self.network_list.adapter.selection[0].text) + 1
-			self.cracked_password = "praetorian"
-			print(num)
-			print(self.network_list.adapter.data[num])
+			#self.cracked_password = "praetorian"
+			bssid = self.network_bssid[num]
+			self.cracked_password = runPasswordCracker(bssid)
 			selection = self.network_list.adapter.selection[0].text
 		pass
 
