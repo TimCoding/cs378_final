@@ -1,0 +1,95 @@
+#: import main networkcrack
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+NetworkCrack:
+
+<NetworkCrack>:
+    network_list: networks_list_view
+    word_list_strength: 0
+    cracked_password: ""
+    padding: 10
+    spacing: 10
+
+    BoxLayout:
+        orientation: "horizontal"
+
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                size_hint_y: 10
+                Label:
+                    text: "Networks Available:"
+                    font_size: self.width/15
+
+            BoxLayout:
+                size_hint_y: 10
+                Button:
+                    text: "Refresh Networks"
+                    font_size: self.width/15
+                    on_press: root.refresh_networks()
+                
+
+            ListView:
+                size_hint_y: 80
+                id: networks_list_view
+                adapter:
+                    ListAdapter(data=["Click \"Refresh Networks\" to list networks"], args_converter = lambda row_index, row_data: {'text':row_data, 'font_size': 20, 'size_hint_y': None, 'height': '50dp'}, cls=main.NetworkListButton)
+
+        BoxLayout:
+            orientation: "vertical"
+
+            Label:
+                size_hint_y: 10
+                font_size: self.width/15
+                text: "Select Strength of Word List:"
+
+            BoxLayout:
+                size_hint_y: 20
+                orientation: "horizontal"
+                ToggleButton:
+                    text: "Low"
+                    group: "Strength"
+                    font_size: self.width/5
+                    on_press: root.set_strength_low()
+                ToggleButton:
+                    text: "Medium"
+                    group: "Strength"
+                    font_size: self.width/5
+                    on_press: root.set_strength_medium()
+                ToggleButton:
+                    text: "High"
+                    group: "Strength"
+                    font_size: self.width/5
+                    on_press: root.set_strength_high()
+
+            Button:
+                size_hint_y: 20
+                text: "Crack Password"
+                font_size: self.width/15
+                on_press: root.crack_network()
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: 10
+
+                Label:
+                    font_size: self.width/10
+                    text: "Cracked Password:"
+
+                Label:
+                    font_size: self.width/10
+                    text: ""
+
+            Button:
+                size_hint_y: 20
+                text: "Connect to Network"
+                font_size: self.width/15
+                on_press: root.connect_to_network()
+
+            Button:
+                size_hint_y: 20
+                text: "Scan Network"
+                font_size: self.width/15
+                on_press: root.scan_network()

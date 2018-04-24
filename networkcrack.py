@@ -1,0 +1,75 @@
+import subprocess
+
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import ObjectProperty
+from kivy.uix.listview import ListItemButton
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
+
+class NetworkListButton(ListItemButton):
+	pass
+
+class NetworkCrack(BoxLayout):
+	network_list = ObjectProperty()
+	word_list_strength = ObjectProperty()
+	cracked_password = ObjectProperty()
+
+	def refresh_networks(self):
+		self.network_list.adapter.data.clear()
+		subprocesses = subprocess.check_output(["netsh", "wlan", "show", "network"])
+		subprocesses = subprocesses.decode("ascii")
+		subprocesses = subprocesses.replace("\r", "")
+		ls = subprocesses.split("\n")
+		ls=ls[4:]
+		x=0
+		while x < len(ls):
+			if x%5 == 0:
+				self.network_list.adapter.data.extend([ls[x]])
+			x+=1
+
+		self.network_list.adapter.data.remove('')
+		self.network_list._trigger_reset_populate()
+
+	def set_strength_low(self):
+		if self.word_list_strength == 1:
+			self.word_list_strength = 0
+		else:
+			self.word_list_strength = 1
+
+	def set_strength_medium(self):
+		if self.word_list_strength == 2:
+			self.word_list_strength = 0
+		else:
+			self.word_list_strength = 2
+
+	def set_strength_high(self):
+		if self.word_list_strength == 3:
+			self.word_list_strength = 0
+		else:
+			self.word_list_strength = 3
+
+	def crack_network(self):
+		if self.word_list_strength == 0 or not self.network_list.adapter.selection:
+			popup = Popup(title='Error', content=Label(text='Please select a network and word list strength.'), size_hint=(None, None), size=(400, 400))
+			popup.open()
+		if self.network_list.adapter.selection:
+			selection = self.network_list.adapter.selection[0].text
+		pass
+
+	def connect_to_network(self):
+		if self.cracked_password == "":
+			popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
+			popup.open()
+
+	def scan_network(self):
+		if self.cracked_password == "":
+			popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
+			popup.open()
+
+class NetworkCrackApp(App):
+	def build(self):
+		return NetworkCrack()
+
+crackApp = NetworkCrackApp()
+crackApp.run()
