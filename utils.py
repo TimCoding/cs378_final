@@ -40,8 +40,9 @@ def read_bssid():
 				channel = int(row[3])
 				print(channel)
 				if 0 <= channel:
-					if channel in data_channel: 
-						data_channel[channel].append(row)
-					else:
-						data_channel[channel] = [row]
-		print(data_channel[6])
+					if channel not in data_channel: 
+						data_channel[channel] = []
+					#name, bssid, channel
+					if row[13] is not " ":
+						data_channel[channel].append([row[13], row[0], row[3]])
+		return data_channel[6]

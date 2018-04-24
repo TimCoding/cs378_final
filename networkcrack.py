@@ -6,6 +6,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from utils import *
 
 class NetworkListButton(ListItemButton):
 	pass
@@ -17,18 +18,17 @@ class NetworkCrack(BoxLayout):
 
 	def refresh_networks(self):
 		self.network_list.adapter.data.clear()
-		subprocesses = subprocess.check_output(["netsh", "wlan", "show", "network"])
-		subprocesses = subprocesses.decode("ascii")
-		subprocesses = subprocesses.replace("\r", "")
-		ls = subprocesses.split("\n")
-		ls=ls[4:]
-		x=0
-		while x < len(ls):
-			if x%5 == 0:
-				self.network_list.adapter.data.extend([ls[x]])
-			x+=1
+		# subprocesses = subprocess.check_output(["netsh", "wlan", "show", "network"])
+		# subprocesses = subprocesses.decode("ascii")
+		# subprocesses = subprocesses.replace("\r", "")
+		# ls = subprocesses.split("\n")
+		ls = [] 
+		networks = read_bssid()
+		for network in networks:
+			ls.append(network[0])
+		self.network_list.adapter.data.extend(ls)
 
-		self.network_list.adapter.data.remove('')
+		#self.network_list.adapter.data.remove('')
 		self.network_list._trigger_reset_populate()
 
 	def set_strength_low(self):
