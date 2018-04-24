@@ -6,4 +6,5 @@ from utils import *
 
 if __name__ == "__main__":
 	#Do shit here
-	runPasswordCracker("10:0D:7F:55:FA:AD")
+	#runPasswordCracker("10:0D:7F:55:FA:AD")
+	read_bssid()

