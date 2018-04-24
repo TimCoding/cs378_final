@@ -13,11 +13,12 @@ class NetworkListButton(ListItemButton):
 
 class NetworkCrack(BoxLayout):
 	network_list = ObjectProperty()
+	network_bssid = []
 	word_list_strength = ObjectProperty()
 	cracked_password = ObjectProperty()
 
 	def refresh_networks(self):
-		self.network_list.adapter.data.clear()
+		#self.network_list.adapter.data.clear()
 		# subprocesses = subprocess.check_output(["netsh", "wlan", "show", "network"])
 		# subprocesses = subprocesses.decode("ascii")
 		# subprocesses = subprocesses.replace("\r", "")
@@ -25,7 +26,8 @@ class NetworkCrack(BoxLayout):
 		ls = [] 
 		networks = read_bssid()
 		for network in networks:
-			ls.append(network[0])
+			ls.append(network[0]) ##Grabbing name
+			network_bssid.append(network[1]) ##Grabbing BSSID 
 		self.network_list.adapter.data.extend(ls)
 
 		#self.network_list.adapter.data.remove('')
