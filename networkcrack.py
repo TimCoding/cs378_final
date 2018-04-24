@@ -60,7 +60,7 @@ class NetworkCrack(BoxLayout):
 		if self.network_list.adapter.selection:
 			num = parse_num_ssid(self.network_list.adapter.selection[0].text) + 1
 			#self.cracked_password = "praetorian"
-			bssid = self.network_bssid[num]
+			bssid = self.network_bssid[num - 1]
 			self.cracked_password = runPasswordCracker(bssid)
 			selection = self.network_list.adapter.selection[0].text
 		pass

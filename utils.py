@@ -25,10 +25,10 @@ def runPasswordCracker(target):
 	print(target)
 	passwordCrackerCmd = "aircrack-ng -w /usr/share/john/password.lst -b " + target + " cs378-01.cap"
 	passwordCrackerCmdArray = passwordCrackerCmd.split(' ')
-	regex = re.compile(r'\[\s[a-zA-z\d]*\s\]')
+	regex = re.compile(r'\[\s([a-zA-z\d]*)\s\]')
 	passwordCrackerResult = check_output(passwordCrackerCmdArray).decode("utf-8")
 	password = regex.search(passwordCrackerResult)
-	return password.group(0)
+	return password.group(1)
 
 def read_bssid():
 	with open("cs378-01.csv", 'r') as fp:
