@@ -26,9 +26,18 @@ NetworkCrack:
             BoxLayout:
                 size_hint_y: 10
                 Button:
+                    text: "Scan"
+                    font_size: self.width/15
+                    on_press: root.get_networks()
+                Button:
                     text: "Refresh Networks"
                     font_size: self.width/15
                     on_press: root.refresh_networks()
+
+            ProgressBar:
+                id: pb
+                size_hint_y: 1
+                value: root.value
                 
 
             ListView:
@@ -64,11 +73,18 @@ NetworkCrack:
                     font_size: self.width/5
                     on_press: root.set_strength_high()
 
-            Button:
+            BoxLayout:
                 size_hint_y: 20
-                text: "Crack Password"
-                font_size: self.width/15
-                on_press: root.crack_network()
+                Button:
+                    
+                    text: "Handshake"
+                    font_size: self.width/15
+                    on_press: root.get_networks()
+
+                Button:
+                    text: "Crack Password"
+                    font_size: self.width/15
+                    on_press: root.crack_network()
 
             BoxLayout:
                 orientation: "horizontal"
