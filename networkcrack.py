@@ -98,7 +98,7 @@ class NetworkCrack(BoxLayout):
             popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
             popup.open()
         threading.Thread(target = self.nmap_timer).start()
-        runNMAP()
+        threading.Thread(target = runNMAP).start()
 
 class NetworkCrackApp(App):
     def build(self):
