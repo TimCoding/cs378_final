@@ -28,6 +28,7 @@ class NetworkCrack(BoxLayout):
         self.puopen()
 
     def refresh_networks(self):
+        self.network_list.adapter.data.clear()
         ls = [] 
         bssid = []
         networks = read_bssid()
@@ -45,8 +46,17 @@ class NetworkCrack(BoxLayout):
             return False
         self.value += 1
 
+    def next_nmap(self, dt):
+        if self.value>=100:
+            self.value = 0
+            return False
+        self.value += 1
+
     def puopen(self):
         Clock.schedule_interval(self.next, 1/5)
+
+    def nmap_timer(self):
+        Clock.schedule_interval(self.next_nmap, 1/2)
 
     def set_strength_low(self):
         if self.word_list_strength == 1:
@@ -87,6 +97,7 @@ class NetworkCrack(BoxLayout):
         if self.cracked_password == "":
             popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
             popup.open()
+        self.nmap_timer()
         runNMAP()
 
 class NetworkCrackApp(App):
