@@ -16,6 +16,9 @@ def runIfconfig():
 	ipaddress = regex.search(ifconResult)
 	return ipaddress.group(0)
 
+def getNetworks(): 
+	check_output(['airodump-ng', 'wlan0mon'], timeout=60)
+
 def runNMAP():
 	ipaddress = runIfconfig() + "1-30";
 	# print(ipaddress)

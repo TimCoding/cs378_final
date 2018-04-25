@@ -26,6 +26,7 @@ class NetworkCrack(BoxLayout):
 
     def get_networks(self):
         self.puopen()
+	getNetworks()
 
     def refresh_networks(self):
         self.network_list.adapter.data.clear()
