@@ -1,5 +1,5 @@
 import subprocess
-
+import threading
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
@@ -97,7 +97,7 @@ class NetworkCrack(BoxLayout):
         if self.cracked_password == "":
             popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
             popup.open()
-        self.nmap_timer()
+        threading.Thread(target = self.nmap_timer).start()
         runNMAP()
 
 class NetworkCrackApp(App):
