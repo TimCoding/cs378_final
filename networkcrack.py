@@ -26,6 +26,7 @@ class NetworkCrack(BoxLayout):
         value = 0
 
     def get_networks(self):
+        #Fixed
         self.puopen()
         getNetworks()
 
