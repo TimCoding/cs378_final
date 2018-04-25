@@ -9,6 +9,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from utils import *
+from parser import *
 
 class NetworkListButton(ListItemButton):
     pass
@@ -26,6 +27,7 @@ class NetworkCrack(BoxLayout):
 
     def get_networks(self):
         self.puopen()
+        getNetworks()
 
     def refresh_networks(self):
         self.network_list.adapter.data.clear()
@@ -98,7 +100,8 @@ class NetworkCrack(BoxLayout):
             popup = Popup(title='Error', content=Label(text='No password has been cracked.'), size_hint=(None, None), size=(400, 400))
             popup.open()
         threading.Thread(target = self.nmap_timer).start()
-        threading.Thread(target = runNMAP).start()
+        #threading.Thread(target = runNMAP).start()
+        threading.Thread(target = create_report).start()
 
 class NetworkCrackApp(App):
     def build(self):

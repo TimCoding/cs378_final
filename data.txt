@@ -1,0 +1,90 @@
+Host 1
+ipv4 Address: 10.202.208.1
+mac Address: 10:BF:48:D3:93:B8
+Hostname: router.asus.com
+Port: 53, Protocol: tcp, State: open
+Port: 80, Protocol: tcp, State: open
+Port: 139, Protocol: tcp, State: open
+Port: 445, Protocol: tcp, State: open
+Port: 8200, Protocol: tcp, State: open
+closed ports: 995
+
+Host 2
+ipv4 Address: 10.202.208.2
+mac Address: 00:21:9B:9F:A8:80
+Port: 22, Protocol: tcp, State: open
+Port: 80, Protocol: tcp, State: open
+Port: 443, Protocol: tcp, State: open
+filtered ports: 997
+
+Host 3
+ipv4 Address: 10.202.208.3
+mac Address: FA:AC:E5:E5:11:BA
+Port: 31337, Protocol: tcp, State: open
+closed ports: 999
+
+Host 4
+ipv4 Address: 10.202.208.7
+mac Address: 4E:F6:A5:FE:96:E2
+Port: 21, Protocol: tcp, State: open
+Port: 22, Protocol: tcp, State: open
+Port: 111, Protocol: tcp, State: open
+Port: 2049, Protocol: tcp, State: open
+Port: 9090, Protocol: tcp, State: open
+filtered ports: 995
+
+Host 5
+ipv4 Address: 10.202.208.10
+mac Address: EA:01:AA:A7:17:C6
+Port: 22, Protocol: tcp, State: open
+Port: 53, Protocol: tcp, State: open
+Port: 80, Protocol: tcp, State: open
+Port: 111, Protocol: tcp, State: open
+Port: 139, Protocol: tcp, State: open
+Port: 445, Protocol: tcp, State: open
+Port: 8080, Protocol: tcp, State: open
+closed ports: 993
+
+Host 6
+ipv4 Address: 10.202.208.16
+mac Address: DE:55:9F:37:5C:C3
+Port: 80, Protocol: tcp, State: open
+Port: 111, Protocol: tcp, State: open
+Port: 2049, Protocol: tcp, State: open
+Port: 3306, Protocol: tcp, State: open
+Port: 31337, Protocol: tcp, State: open
+closed ports: 995
+
+Host 7
+ipv4 Address: 10.202.208.18
+mac Address: 00:18:19:4D:81:80
+Port: 23, Protocol: tcp, State: open
+Port: 80, Protocol: tcp, State: open
+closed ports: 998
+
+Host 8
+ipv4 Address: 10.202.208.20
+mac Address: 0E:B7:34:21:5C:A7
+Port: 53, Protocol: tcp, State: open
+Port: 111, Protocol: tcp, State: open
+Port: 139, Protocol: tcp, State: open
+Port: 445, Protocol: tcp, State: open
+Port: 2049, Protocol: tcp, State: open
+closed ports: 995
+
+Host 9
+ipv4 Address: 10.202.208.23
+mac Address: 00:1E:C9:FC:C1:F9
+Port: 135, Protocol: tcp, State: open
+Port: 139, Protocol: tcp, State: open
+Port: 445, Protocol: tcp, State: open
+Port: 3389, Protocol: tcp, State: open
+Port: 49152, Protocol: tcp, State: open
+Port: 49153, Protocol: tcp, State: open
+Port: 49154, Protocol: tcp, State: open
+Port: 49155, Protocol: tcp, State: open
+Port: 49156, Protocol: tcp, State: open
+Port: 49176, Protocol: tcp, State: open
+closed ports: 990
+
+Nmap done at Mon Apr 23 14:49:54 2018; 30 IP addresses (9 hosts up) scanned in 168.17 seconds
