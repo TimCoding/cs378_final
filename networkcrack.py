@@ -1,5 +1,6 @@
 import subprocess
 import threading
+import random
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
@@ -27,17 +28,24 @@ class NetworkCrack(BoxLayout):
 
     def get_networks(self):
         #Fixed
-        threading.Thread(target = self.puopen()).start()
-        threading.Thread(target = getNetworks()).start()
+        getNetworks()
+
+    def get_handshake(self):
+        num = parse_num_ssid(self.network_list.adapter.selection[0].text) + 1
+        bssid = self.network_bssid[num - 1]
+        ranIndex = random.randint(1, len(network_bssid))
+        while ranIndex == num:
+            ranIndex = random.randint(1, len(network_bssid))
+        getHandshake(bssid, network_bssid[ranIndex])
 
     def refresh_networks(self):
         self.network_list.adapter.data.clear()
-        ls = [] 
+        ls = []
         bssid = []
         networks = read_bssid()
         for network in networks:
             ls.append(network[0]) ##Grabbing name
-            bssid.append(network[1]) ##Grabbing BSSID 
+            bssid.append(network[1]) ##Grabbing BSSID
         self.network_list.adapter.data.extend(ls)
         self.network_bssid = bssid
         #self.network_list.adapter.data.remove('')
@@ -86,6 +94,7 @@ class NetworkCrack(BoxLayout):
         if self.network_list.adapter.selection:
             num = parse_num_ssid(self.network_list.adapter.selection[0].text) + 1
             #self.cracked_password = "praetorian"
+            #Add different wordlists here
             bssid = self.network_bssid[num - 1]
             self.cracked_password = runPasswordCracker(bssid)
             selection = self.network_list.adapter.selection[0].text

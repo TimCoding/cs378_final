@@ -38,7 +38,7 @@ NetworkCrack:
                 id: pb
                 size_hint_y: 1
                 value: root.value
-                
+
 
             ListView:
                 size_hint_y: 80
@@ -76,10 +76,10 @@ NetworkCrack:
             BoxLayout:
                 size_hint_y: 20
                 Button:
-                    
+
                     text: "Handshake"
                     font_size: self.width/15
-                    on_press: root.get_networks()
+                    on_press: root.get_handshake()
 
                 Button:
                     text: "Crack Password"
