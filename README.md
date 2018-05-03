@@ -16,6 +16,36 @@ Then, follow instructions for the Ubuntu distribution above.
 
 Lastly, you'll need to install nmap, Python 3, pip, and git for this tool to work.
 
+### Prerequisites for ezWifi main application
+
+NOTE: It is HIGHLY recommended that you run the ezWifi main application (The GUI and everything outside the vulnerability_scan folder) on a Kali instance you have running on VirtualBox.  
+
+You will need to make sure you have all the appropriate Python libraries to run the Kivy-based application. Once you have cloned this repository there are several Python libraries that need to be installed. Also make sure you have Python 3 on your Kali instance. 
+
+- python3 -m pip install Pillow
+- python3 -m pip install Kivy
+- python3 -m pip install pygame 
+
+In order to run the the main ezWifi program:
+
+```
+python3 networkcrack.py
+
+```
+To begin:
+
+0.) Set up your wireless hacking device. NOTE: Program is set for your device to be wlan0mon once you do airmon-ng start <device> 
+1.) Click the scan button and wait for the progress bar to finish
+2.) Click refresh networks to display all networks you captured packets from
+3.) Select a network you want to exploit
+4.) Select a password strength you want (For submission purposes all password lengths are the same, only on our development machine was there different password lists) 
+5.) Click Handshake and wait for progress bar
+6.) Click crack password
+7.) If a password was cracked it will be displayed
+8.) Connect to the network you just gained access to
+9.) Click scan network to run NMAP and look at data.txt generated in the directory to see NMAP results. 
+10.) Use live hosts revealed in NMAP results to feed ip-addresses to vulnerability scanner in the folder vulnerability_scan
+
 ### Prerequisites
 
 You need a compatible wireless network adapter, such as those made by Alfa or Panda. Specific chipsets will depend on your system and OS version.
