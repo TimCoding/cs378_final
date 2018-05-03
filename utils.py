@@ -37,6 +37,7 @@ def getNetworks():
     if os.path.exists('cs378-01.kismet.csv'):
         os.remove('cs378-01.kismet.csv')
     if os.path.exists('cs378-01.kismet.netxml'):
+        os.remove('cs378-01.kismet.netxml')
     check_output(['airodump-ng', '-c', '6', 'wlan0mon', '-w', 'cs378'], timeout=30)
 
 def getHandshake(target, other):
