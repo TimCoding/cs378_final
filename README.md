@@ -34,17 +34,17 @@ python3 networkcrack.py
 ```
 To begin:
 
-0.) Set up your wireless hacking device. NOTE: Program is set for your device to be wlan0mon once you do airmon-ng start <device> 
-1.) Click the scan button and wait for the progress bar to finish
-2.) Click refresh networks to display all networks you captured packets from
-3.) Select a network you want to exploit
-4.) Select a password strength you want (For submission purposes all password lengths are the same, only on our development machine was there different password lists) 
-5.) Click Handshake and wait for progress bar
-6.) Click crack password
-7.) If a password was cracked it will be displayed
-8.) Connect to the network you just gained access to
-9.) Click scan network to run NMAP and look at data.txt generated in the directory to see NMAP results. 
-10.) Use live hosts revealed in NMAP results to feed ip-addresses to vulnerability scanner in the folder vulnerability_scan
+0.) Set up your wireless hacking device. NOTE: Program is set for your device to be wlan0mon once you do airmon-ng start <device> <br/>
+1.) Click the scan button and wait for the progress bar to finish <br/>
+2.) Click refresh networks to display all networks you captured packets from <br/>
+3.) Select a network you want to exploit <br/>
+4.) Select a password strength you want (For submission purposes all password lengths are the same, only on our development machine was there different password lists) <br/>
+5.) Click Handshake and wait for progress bar <br/>
+6.) Click crack password <br/>
+7.) If a password was cracked it will be displayed <br/>
+8.) Connect to the network you just gained access to <br/>
+9.) Click scan network to run NMAP and look at data.txt generated in the directory to see NMAP results. <br/>
+10.) Use live hosts revealed in NMAP results to feed ip-addresses to vulnerability scanner in the folder vulnerability_scan <br/>
 
 ### Prerequisites
 
