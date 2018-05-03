@@ -20,7 +20,8 @@ def runIfconfig():
 
 def runNMAP():
     #Add stuff to remove old files here
-    os.remove('test.xml')
+    if os.path.exists('test.xml'):
+        os.remove('test.xml')
     ipaddress = runIfconfig() + "1-30"
     # print(ipaddress)
     nmapResult = subprocess.Popen(['nmap', '-oX', 'test.xml', ipaddress])
@@ -29,18 +30,25 @@ def runNMAP():
 
 def getNetworks():
     #Add stuff to remove old files here
-    os.remove('cs378-01.cap')
-    os.remove('cs378-01.csv')
-    os.remove('cs378-01.kismet.csv')
-    os.remove('cs378-01.kismet.netxml')
+    if os.path.exists('cs378-01.cap'):   
+        os.remove('cs378-01.cap')
+    if os.path.exists('cs378-01.csv'):
+        os.remove('cs378-01.csv')
+    if os.path.exists('cs378-01.kismet.csv'):
+        os.remove('cs378-01.kismet.csv')
+    if os.path.exists('cs378-01.kismet.netxml'):
     check_output(['airodump-ng', '-c', '6', 'wlan0mon', '-w', 'cs378'], timeout=30)
 
 def getHandshake(target, other):
     #Add stuff to remove old files here
-    os.remove('cs378-01.cap')
-    os.remove('cs378-01.csv')
-    os.remove('cs378-01.kismet.csv')
-    os.remove('cs378-01.kismet.netxml')
+    if os.path.exists('cs378-01.cap'):   
+        os.remove('cs378-01.cap')
+    if os.path.exists('cs378-01.csv'):
+        os.remove('cs378-01.csv')
+    if os.path.exists('cs378-01.kismet.csv'):
+        os.remove('cs378-01.kismet.csv')
+    if os.path.exists('cs378-01.kismet.netxml'):
+        os.remove('cs378-01.kismet.netxml')
     check_output(['airodump-ng', '-c', '6', 'wlan0mon', '-w', 'cs378'], timeout=60)
     #Take input for -a
     #Take input for -c
