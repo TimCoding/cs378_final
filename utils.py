@@ -24,8 +24,8 @@ def runNMAP():
     ipaddress = runIfconfig() + "1-30"
     # print(ipaddress)
     nmapResult = subprocess.Popen(['nmap', '-oX', 'test.xml', ipaddress])
-	nmapResult.wait()
-	create_report()
+    nmapResult.wait()
+    create_report()
 
 def getNetworks():
     #Add stuff to remove old files here
