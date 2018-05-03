@@ -10,7 +10,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from utils import *
-from parser import *
+
 
 class NetworkListButton(ListItemButton):
     pass
@@ -111,7 +111,7 @@ class NetworkCrack(BoxLayout):
             popup.open()
         threading.Thread(target = self.nmap_timer).start()
         #threading.Thread(target = runNMAP).start()
-        threading.Thread(target = create_report).start()
+        threading.Thread(target = runNMAP).start()
 
 class NetworkCrackApp(App):
     def build(self):

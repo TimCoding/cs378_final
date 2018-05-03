@@ -4,6 +4,7 @@ import re
 from subprocess import check_output
 import csv
 from itertools import islice
+from parser import *
 
 #Runs ifconfig and gets ip address so NMAP can be performed
 def runIfconfig():
@@ -20,10 +21,11 @@ def runIfconfig():
 def runNMAP():
     #Add stuff to remove old files here
     os.remove('test.xml')
-    ipaddress = runIfconfig() + "1-30";
+    ipaddress = runIfconfig() + "1-30"
     # print(ipaddress)
-    nmapResult = check_output(['nmap', '-oX', 'test.xml', ipaddress])
-    print(nmapResult.decode("utf-8"))
+    nmapResult = subprocess.Popen(['nmap', '-oX', 'test.xml', ipaddress])
+	nmapResult.wait()
+	create_report()
 
 def getNetworks():
     #Add stuff to remove old files here
