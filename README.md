@@ -14,7 +14,7 @@ https://www.blackmoreops.com/2014/02/21/kali-linux-add-ppa-repository-add-apt-re
 
 Then, follow instructions for the Ubuntu distribution above.
 
-Lastly, you'll need to install nmap, Python 3, and pip for this tool to work.
+Lastly, you'll need to install nmap, Python 3, pip, and git for this tool to work.
 
 ### Prerequisites
 
