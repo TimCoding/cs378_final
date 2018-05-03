@@ -46,7 +46,7 @@ To begin:
 9.) Click scan network to run NMAP and look at data.txt generated in the directory to see NMAP results. <br/>
 10.) Use live hosts revealed in NMAP results to feed ip-addresses to vulnerability scanner in the folder vulnerability_scan <br/>
 
-### Prerequisites
+### Prerequisites for Vulnerability Scanner
 
 You need a compatible wireless network adapter, such as those made by Alfa or Panda. Specific chipsets will depend on your system and OS version.
 
