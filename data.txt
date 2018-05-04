@@ -86,5 +86,3 @@ Port: 49155, Protocol: tcp, State: open
 Port: 49156, Protocol: tcp, State: open
 Port: 49176, Protocol: tcp, State: open
 closed ports: 990
-
-Nmap done at Mon Apr 23 14:49:54 2018; 30 IP addresses (9 hosts up) scanned in 168.17 seconds
